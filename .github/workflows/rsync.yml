@@ -14,7 +14,7 @@ jobs:
       - run: chmod 600 key.pem
       
       - run: ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
-      - run: ssh -o "StrictHostKeyChecking=no" $USER@$HOST -i key.pem
+      - run: ssh -o "StrictHostKeyChecking=no" $USER@$HOST -i key.pem ls -al
       
       - run: rsync --version
       - run: rsync README.md $USER@$HOST:~/ -e "ssh -i key.pem -o StrictHostKeyChecking=no" -avzr
