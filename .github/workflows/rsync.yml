@@ -10,15 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: 'echo "$SSH_KEY" > key.pem'
+      - run: echo "${{secrets.SERVER_SSH_KEY}}" > key.pem
       - run: chmod 600 key.pem
       
-      - run: ssh-keygen -b 2048 -t rsa -f /tmp/sshkey -q -N ""
-      - run: ssh -o "StrictHostKeyChecking=no" $USER@$HOST -i key.pem ls -al
+      - run: ssh -o "StrictHostKeyChecking=no" ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} -i key.pem ls -al
       
       - run: rsync --version
-      - run: rsync README.md $USER@$HOST:~/ -e "ssh -i key.pem -o StrictHostKeyChecking=no" -avzr
-    env:
-      USER: ${{secrets.REMOTE_USER}}
-      HOST: ${{secrets.REMOTE_HOST}}
-      SSH_KEY: ${{secrets.SERVER_SSH_KEY}}
+      - run: rsync README.md ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}}:~/ -e "ssh -o StrictHostKeyChecking=no -i key.pem" -avzr
