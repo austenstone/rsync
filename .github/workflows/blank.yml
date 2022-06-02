@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: echo "$SSH_KEY" > key.pem
-      - run: rsync README.md ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/ -e "ssh -i .ssh/key.pem" -avzr
+      - run: chmod 600 key.pem
+      - run: rsync README.md ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/ -e "ssh -i key.pem" -avzr
     env:
       SSH_KEY: ${{secrets.SSH_KEY}}
