@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "$SSH_KEY" > key.pem
+      - run: 'echo "$SSH_KEY" > key.pem'
       - run: chmod 600 key.pem
       - run: rsync README.md ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/ -e "ssh -i key.pem -o StrictHostKeyChecking=no" -avzr
     env:
