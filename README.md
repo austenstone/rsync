@@ -1,5 +1,5 @@
 # rsync
-[rsync](https://linux.die.net/man/1/rsync) is a fast, versatile, remote (and local) file-copying tool. This repository demonstrates how to use it with [GitHub Actions](https://docs.github.com/en/actions).
+This repository demonstrates how to use [rsync](https://linux.die.net/man/1/rsync) with [GitHub Actions](https://docs.github.com/en/actions). rsync is a fast, versatile, remote (and local) file-copying tool. It's great for deployment but there are many use cases.
 
 ## Gotchas
 1. The SSH key, username, and host should be stored as secrets.
