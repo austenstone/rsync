@@ -10,10 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: echo "${{secrets.SERVER_SSH_KEY}}" > ~/.ssh/id_rsa
-      - run: chmod 600 ~/.ssh/id_rsa
-      
-      - run: ssh -o "StrictHostKeyChecking=no" ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}} -i ~/.ssh/id_rsa ls -al
-      
-      - run: rsync --version
+      - run: |
+          echo "${{secrets.SERVER_SSH_KEY}}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
       - run: rsync README.md ${{secrets.REMOTE_USER}}@${{secrets.REMOTE_HOST}}:~/ -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" -avzr
