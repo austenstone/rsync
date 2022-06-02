@@ -11,5 +11,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ SERVER_SSH_KEY }} > key.pem
-      - run: rsync README.md ${{ REMOTE_USER }}@${{ REMOTE_HOST }}:~/ -e "ssh -i .ssh/key.pem" -avzr
+      - run: echo ${{ secrets.SERVER_SSH_KEY }} > key.pem
+      - run: rsync README.md ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:~/ -e "ssh -i .ssh/key.pem" -avzr
