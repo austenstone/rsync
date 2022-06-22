@@ -9,3 +9,7 @@ This repository demonstrates how to use [rsync](https://linux.die.net/man/1/rsyn
    - `-i key.pem` specifies to use the SSH key
 
 See the [workflow file](https://github.com/austenstone/rsync/blob/main/.github/workflows/rsync.yml) and the [actions run](https://github.com/austenstone/rsync/runs/6708535239?check_suite_focus=true)
+
+# Secrets
+Store values as secrets.
+![image](https://user-images.githubusercontent.com/22425467/175047976-d0d5c839-d61c-4647-abff-7dfe8c6409e6.png)
